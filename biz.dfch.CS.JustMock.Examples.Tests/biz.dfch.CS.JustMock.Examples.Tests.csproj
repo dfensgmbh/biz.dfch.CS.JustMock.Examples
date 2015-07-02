@@ -37,7 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Telerik.JustMock">
-      <HintPath>../packages/JustMock/Telerik.JustMock.dll</HintPath>
+      <HintPath>../JustMock/Telerik.JustMock.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Choose>
