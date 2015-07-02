@@ -4,4 +4,4 @@
 
 ## Introduction
 
-This project provides frequent used and as well tricky JustMock application examples. The examples are documented in the projects [Wiki](https://github.com/dfensgmbh/biz.dfch.CS.JustMock.Examples/wiki)
+This project provides frequent used and as well tricky JustMock application examples. The examples are documented in the projects [Wiki](https://github.com/dfensgmbh/biz.dfch.CS.JustMock.Examples/wiki).
