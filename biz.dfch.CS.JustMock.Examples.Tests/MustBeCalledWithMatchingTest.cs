@@ -1,4 +1,3 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 /**
  * Copyright 2015 Marc Rufer, d-fens GmbH
  *
@@ -14,6 +13,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 ﻿using System;
 using Telerik.JustMock;
 
