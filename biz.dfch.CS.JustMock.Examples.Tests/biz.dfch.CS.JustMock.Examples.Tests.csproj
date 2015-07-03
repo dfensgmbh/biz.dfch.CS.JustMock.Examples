@@ -57,6 +57,12 @@
     <Compile Include="BasicStaticMockingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\biz.dfch.CS.JustMock.Examples\biz.dfch.CS.JustMock.Examples.csproj">
+      <Project>{89a78ca4-4cd8-4fdc-84c9-4e86854f2e69}</Project>
+      <Name>biz.dfch.CS.JustMock.Examples</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
