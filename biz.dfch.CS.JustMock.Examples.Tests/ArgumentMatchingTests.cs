@@ -84,5 +84,16 @@ namespace biz.dfch.CS.JustMock.Examples.Tests
 
             Mock.Assert(mock);
         }
+
+        [TestMethod]
+        public void MockedDoNothingNotGettingCalledWithNullAsArgument2()
+        {
+            var mock = Mock.Create<MockSamplesHelper>();
+            Mock.Arrange(() => mock.DoNothing(Arg.IsAny<String>())).MustBeCalled();
+
+            mock.DoNothing(null);
+
+            Mock.Assert(mock);
+        }
     }
 }
