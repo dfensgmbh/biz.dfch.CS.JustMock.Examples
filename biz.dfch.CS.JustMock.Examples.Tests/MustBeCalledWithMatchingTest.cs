@@ -34,7 +34,6 @@ namespace biz.dfch.CS.JustMock.Examples.Tests
          * If passing a specific parameter like "Test" in mock arrangment the mocked method will only be called
          * if the parameter in the call (Act) matches the parameter specified in arrangement.
          **/
-
         [TestMethod]
         public void MockedConsoleWriteLineGettingCalledWithSpecificArgument()
         {
