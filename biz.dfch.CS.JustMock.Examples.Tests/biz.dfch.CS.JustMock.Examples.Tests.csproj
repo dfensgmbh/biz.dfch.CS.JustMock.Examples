@@ -53,7 +53,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="MustBeCalledWithMatchingTest.cs" />
+    <Compile Include="ArgumentMatchingTests.cs" />
     <Compile Include="BasicStaticMockingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

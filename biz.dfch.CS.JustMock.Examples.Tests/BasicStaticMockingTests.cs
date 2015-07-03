@@ -24,18 +24,17 @@ namespace biz.dfch.CS.JustMock.Examples.Tests
     {
 
         /**
-         * When mocking DateTimeOffset it's important to create the mock with the 
-         * Behavior.CallOriginal behaviour, if DateTimeOffset is used in arrangement.
-         * 
-         * Otherwise a default value will be returned because by default the Behaviour is set to RecursiveLooser as described here:
-         * http://www.telerik.com/help/justmock/basic-usage-mock-behaviors.html
+         * For more details consult the Wiki
+         * https://github.com/dfensgmbh/biz.dfch.CS.JustMock.Examples/wiki/BasicStaticMockingTests#mocking-datetimeoffsetutcnow
          **/
         [TestMethod]
         public void MockedDateTimeOffsetReturnsExpectedDateTimeOffset()
         {
+            // Arrange
             Mock.SetupStatic(typeof(DateTimeOffset), Behavior.CallOriginal, StaticConstructor.Mocked);
             Mock.Arrange(() => DateTimeOffset.UtcNow).Returns(new DateTimeOffset(2015, 1, 1, 3, 10, 7, new TimeSpan()));
 
+            // Act & Assert
             Assert.AreEqual(new DateTimeOffset(2015, 1, 1, 3, 10, 7, new TimeSpan()), DateTimeOffset.UtcNow);
         }
     }

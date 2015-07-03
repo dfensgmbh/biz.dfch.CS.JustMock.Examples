@@ -20,7 +20,7 @@ using Telerik.JustMock;
 namespace biz.dfch.CS.JustMock.Examples.Tests
 {
     [TestClass]
-    public class MustBeCalledWithMatchingTest
+    public class ArgumentMatchingTests
     {
         private Boolean _called;
 
@@ -30,18 +30,21 @@ namespace biz.dfch.CS.JustMock.Examples.Tests
             _called = false;
         }
 
-         /**
-         * If passing a specific parameter like "Test" in mock arrangment the mocked method will only be called
-         * if the parameter in the call (Act) matches the parameter specified in arrangement.
+        /**
+         * For more details consult the Wiki
+         * https://github.com/dfensgmbh/biz.dfch.CS.JustMock.Examples/wiki/ArgumentMatchingTests#matching-specific-argument
          **/
         [TestMethod]
-        public void MockedConsoleWriteLineGettingCalledWithSpecificArgument()
+        public void MockedConsoleWriteLineGettingCalledWithMatchingArgument()
         {
+            // Arrange
             Mock.SetupStatic(typeof(Console), StaticConstructor.Mocked);
-            Mock.Arrange(() => Console.WriteLine("Test")).DoInstead(() => { _called = true; }).MustBeCalled();
+            Mock.Arrange(() => Console.WriteLine("Test")).DoInstead(() => { _called = true; });
 
+            // Act
             Console.WriteLine("Test");
 
+            // Assert
             Assert.IsTrue(_called);
         }
 
@@ -49,11 +52,37 @@ namespace biz.dfch.CS.JustMock.Examples.Tests
         public void MockedConsoleWriteLineNotGettingCalledWithSpecificArgument()
         {
             Mock.SetupStatic(typeof(Console), StaticConstructor.Mocked);
-            Mock.Arrange(() => Console.WriteLine("Test")).DoInstead(() => { _called = true; }).MustBeCalled();
+            Mock.Arrange(() => Console.WriteLine("Test")).DoInstead(() => { _called = true; });
 
             Console.WriteLine("Something");
 
             Assert.IsFalse(_called);
+        }
+
+        /**
+         * For more details consult the Wiki
+         * https://github.com/dfensgmbh/biz.dfch.CS.JustMock.Examples/wiki/ArgumentMatchingTests#matching-any-argument-of-type
+         **/
+        [TestMethod]
+        public void MockedCDoNothingGettingCalledWithArgumentOfSpecificType()
+        {
+            var mock = Mock.Create<MockSamplesHelper>();
+            Mock.Arrange(() => mock.DoNothing(Arg.AnyString)).MustBeCalled();
+
+            mock.DoNothing("Something");
+
+            Mock.Assert(mock);
+        }
+
+        [TestMethod]
+        public void MockedDoNothingNotGettingCalledWithNullAsArgument()
+        {
+            var mock = Mock.Create<MockSamplesHelper>();
+            Mock.Arrange(() => mock.DoNothing(Arg.AnyString)).MustBeCalled();
+
+            mock.DoNothing(null);
+
+            Mock.Assert(mock);
         }
     }
 }
