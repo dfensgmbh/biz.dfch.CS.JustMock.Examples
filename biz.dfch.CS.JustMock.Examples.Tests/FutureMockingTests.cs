@@ -27,7 +27,7 @@ namespace biz.dfch.CS.JustMock.Examples.Tests
 {
     //see http://www.telerik.com/help/justmock/advanced-usage-future-mocking.html
     [TestClass]
-    class FutureMockingTests
+    public class FutureMockingTests
     {
         [TestMethod]
         [ExpectedException(typeof(UnauthorizedAccessException))]
