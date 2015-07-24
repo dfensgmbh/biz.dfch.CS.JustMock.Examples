@@ -32,10 +32,13 @@ namespace biz.dfch.CS.JustMock.Examples.Tests
         {
             // Arrange
             Mock.SetupStatic(typeof(DateTimeOffset), Behavior.CallOriginal, StaticConstructor.Mocked);
-            Mock.Arrange(() => DateTimeOffset.UtcNow).Returns(new DateTimeOffset(2015, 1, 1, 3, 10, 7, new TimeSpan()));
+            Mock.Arrange(() => DateTimeOffset.UtcNow).Returns(new DateTimeOffset(2015, 1, 1, 3, 10, 7, new TimeSpan())).MustBeCalled();
 
             // Act & Assert
             Assert.AreEqual(new DateTimeOffset(2015, 1, 1, 3, 10, 7, new TimeSpan()), DateTimeOffset.UtcNow);
+
+            // Assert Occurence
+            Mock.Assert(() => DateTimeOffset.UtcNow);
         }
     }
 }
