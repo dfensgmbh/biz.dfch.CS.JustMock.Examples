@@ -21,6 +21,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MSTestExtensions;
 using Telerik.JustMock;
 
 namespace biz.dfch.CS.JustMock.Examples.Tests
@@ -30,7 +31,6 @@ namespace biz.dfch.CS.JustMock.Examples.Tests
     public class FutureMockingTests
     {
         [TestMethod]
-        [ExpectedException(typeof(UnauthorizedAccessException))]
         public void MockInnerHttpClientWithStatusCodeThrowsUnauthorizedAccessException()
         {
             // in this test we mock _all_ objects of a specific type 
@@ -45,11 +45,7 @@ namespace biz.dfch.CS.JustMock.Examples.Tests
 
             // Act
             var classUsingHttpClient = new ClassUsingHttpClient();
-            var result = classUsingHttpClient.Invoke("any-uri");
-
-            // Assert
-            Assert.IsNull(result);
-            Assert.Fail("ERROR: Reaching this point means a previous expected error has not occurred.");
+            ThrowsAssert.Throws<UnauthorizedAccessException>(() => classUsingHttpClient.Invoke("any-uri"));
         }
 
         [TestMethod]
