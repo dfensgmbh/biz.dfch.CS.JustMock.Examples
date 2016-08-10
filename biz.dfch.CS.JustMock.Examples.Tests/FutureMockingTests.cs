@@ -40,12 +40,21 @@ namespace biz.dfch.CS.JustMock.Examples.Tests
             var httpClient = Mock.Create<HttpClient>();
             var task = Mock.Create<System.Threading.Tasks.Task<HttpResponseMessage>>();
 
-            Mock.Arrange(() => httpClient.GetAsync(Arg.AnyString)).IgnoreInstance().Returns(task);
-            Mock.Arrange(() => httpClient.GetAsync(Arg.AnyString).Result.StatusCode).IgnoreInstance().Returns(HttpStatusCode.Unauthorized);
+            Mock.Arrange(() => httpClient.GetAsync(Arg.AnyString))
+                .IgnoreInstance()
+                .Returns(task)
+                .OccursOnce();
+            Mock.Arrange(() => task.Result.StatusCode)
+                .IgnoreInstance()
+                .Returns(HttpStatusCode.Unauthorized)
+                .OccursOnce();
 
             // Act
             var classUsingHttpClient = new ClassUsingHttpClient();
             ThrowsAssert.Throws<UnauthorizedAccessException>(() => classUsingHttpClient.Invoke("any-uri"));
+
+            Mock.Assert(httpClient);
+            Mock.Assert(task);
         }
 
         [TestMethod]
@@ -59,9 +68,18 @@ namespace biz.dfch.CS.JustMock.Examples.Tests
             var task = Mock.Create<System.Threading.Tasks.Task<HttpResponseMessage>>();
             var content = "some-arbitrary-text";
 
-            Mock.Arrange(() => httpClient.GetAsync(Arg.AnyString)).IgnoreInstance().Returns(task);
-            Mock.Arrange(() => httpClient.GetAsync(Arg.AnyString).Result.StatusCode).IgnoreInstance().Returns(HttpStatusCode.OK);
-            Mock.Arrange(() => httpClient.GetAsync(Arg.AnyString).Result.Content.ReadAsStringAsync().Result).IgnoreInstance().Returns(content);
+            Mock.Arrange(() => httpClient.GetAsync(Arg.AnyString))
+                .IgnoreInstance()
+                .Returns(task)
+                .OccursOnce();
+            Mock.Arrange(() => task.Result.StatusCode)
+                .IgnoreInstance()
+                .Returns(HttpStatusCode.OK)
+                .OccursOnce();
+            Mock.Arrange(() => task.Result.Content.ReadAsStringAsync().Result)
+                .IgnoreInstance()
+                .Returns(content)
+                .OccursOnce();
 
             // Act
             var classUsingHttpClient = new ClassUsingHttpClient();
@@ -69,6 +87,9 @@ namespace biz.dfch.CS.JustMock.Examples.Tests
 
             // Assert
             Assert.AreEqual(content, result);
+
+            Mock.Assert(httpClient);
+            Mock.Assert(task);
         }
     }
 }
