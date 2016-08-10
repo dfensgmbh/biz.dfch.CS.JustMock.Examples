@@ -19,9 +19,26 @@ namespace biz.dfch.CS.JustMock.Examples
 {
     public class MockSamplesHelper
     {
+        private bool someProperty;
+
+        public bool SomeProperty
+        {
+            get { return someProperty; }
+            set { someProperty = value; }
+        }
+        
         public void DoNothing(String s)
         {
 
+        }
+
+        public int Add(int firstNumber, int secondNumber)
+        {
+            if (firstNumber > secondNumber)
+            {
+                DoNothing("");
+            }
+            return firstNumber + secondNumber;
         }
     }
 }
