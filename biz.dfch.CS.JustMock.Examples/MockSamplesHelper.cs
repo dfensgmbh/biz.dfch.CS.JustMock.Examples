@@ -27,7 +27,7 @@ namespace biz.dfch.CS.JustMock.Examples
             set { _someProperty = value; }
         }
         
-        public void DoNothing(String s)
+        public void Dummy(String s)
         {
             // Intentionally do nothing
         }
@@ -36,9 +36,14 @@ namespace biz.dfch.CS.JustMock.Examples
         {
             if (firstNumber > secondNumber)
             {
-                DoNothing("");
+                Dummy("");
             }
             return firstNumber + secondNumber;
+        }
+
+        public string ReturnString(string s)
+        {
+            return "called";
         }
     }
 }
