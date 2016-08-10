@@ -19,17 +19,17 @@ namespace biz.dfch.CS.JustMock.Examples
 {
     public class MockSamplesHelper
     {
-        private bool someProperty;
+        private bool _someProperty;
 
         public bool SomeProperty
         {
-            get { return someProperty; }
-            set { someProperty = value; }
+            get { return _someProperty; }
+            set { _someProperty = value; }
         }
         
         public void DoNothing(String s)
         {
-
+            // Intentionally do nothing
         }
 
         public int Add(int firstNumber, int secondNumber)
