@@ -27,7 +27,7 @@ namespace biz.dfch.CS.JustMock.Examples
             set { _someProperty = value; }
         }
         
-        public void Dummy(String s)
+        public void Dummy(string s)
         {
            // Intentionally do nothing
         }
@@ -44,6 +44,11 @@ namespace biz.dfch.CS.JustMock.Examples
         public string ReturnString(string s)
         {
             return "called";
+        }
+
+        public Dummy GetNewDummyInstance()
+        {
+            return new Dummy();
         }
     }
 }
