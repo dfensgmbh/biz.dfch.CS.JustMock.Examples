@@ -108,6 +108,8 @@ namespace biz.dfch.CS.JustMock.Examples.Tests
 
             //Assert
             Assert.AreNotEqual(resultNotMockedInstance, resultMockedInstance);
+            
+            Mock.Assert(mockedInstance);
         }
 
         [TestMethod]
@@ -129,6 +131,25 @@ namespace biz.dfch.CS.JustMock.Examples.Tests
             //Assert
             Assert.AreEqual(resultMockedInstance,resultNotMockedInstance);
 
+            Mock.Assert(mockedInstance);
+        }
+
+        [TestMethod]
+        public void MockedConstructorReturnsDefinedInstance()
+        {
+            //Arrange
+            Dummy definedInstance = new Dummy();
+
+            Mock.Arrange(() => new Dummy())
+                .Returns(definedInstance);
+
+            //Act
+            var result = new MockSamplesHelper().GetNewDummyInstance();
+            
+            //Assert
+            Assert.AreEqual(definedInstance, result);
+
+            Mock.Assert(() => new Dummy());
         }
     }
 }
