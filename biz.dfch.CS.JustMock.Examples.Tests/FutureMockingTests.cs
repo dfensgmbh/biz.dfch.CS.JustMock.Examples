@@ -17,7 +17,6 @@
  *
  */
 using System;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -90,6 +89,46 @@ namespace biz.dfch.CS.JustMock.Examples.Tests
 
             Mock.Assert(httpClient);
             Mock.Assert(task);
+        }
+
+        [TestMethod]
+        public void MockedMockSamplesHelperInstanceAddReturnsNotEqualToNotMocked()
+        {
+            //Arrange
+            MockSamplesHelper mockedInstance = new MockSamplesHelper();
+            MockSamplesHelper notMockedInstance = new MockSamplesHelper();
+
+            Mock.Arrange(() => mockedInstance.Add(Arg.AnyInt, Arg.AnyInt))
+                .Returns(7)
+                .OccursOnce();
+            
+            //Act
+            int resultMockedInstance = mockedInstance.Add(1,1);
+            int resultNotMockedInstance = notMockedInstance.Add(1,1);
+
+            //Assert
+            Assert.AreNotEqual(resultNotMockedInstance, resultMockedInstance);
+        }
+
+        [TestMethod]
+        public void MockedEveryMockedSamplesHelperInstanceAddReturns5()
+        {
+            //Arrange
+            MockSamplesHelper mockedInstance = new MockSamplesHelper();
+            MockSamplesHelper notMockedInstanceStillGetMocked = new MockSamplesHelper();
+
+            Mock.Arrange(() => mockedInstance.Add(Arg.AnyInt, Arg.AnyInt))
+                .IgnoreInstance()
+                .Returns(5)
+                .Occurs(2);
+
+            //Act
+            int resultMockedInstance = mockedInstance.Add(2, 2);
+            int resultNotMockedInstance = notMockedInstanceStillGetMocked.Add(4, 4);
+
+            //Assert
+            Assert.AreEqual(resultMockedInstance,resultNotMockedInstance);
+
         }
     }
 }
