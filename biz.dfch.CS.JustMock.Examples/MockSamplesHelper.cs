@@ -29,7 +29,7 @@ namespace biz.dfch.CS.JustMock.Examples
         
         public void Dummy(String s)
         {
-            // Intentionally do nothing
+           // Intentionally do nothing
         }
 
         public int Add(int firstNumber, int secondNumber)

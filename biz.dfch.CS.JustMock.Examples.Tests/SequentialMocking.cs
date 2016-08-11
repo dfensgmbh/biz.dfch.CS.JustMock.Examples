@@ -1,7 +1,5 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Telerik.JustMock;
-using Telerik.JustMock.Helpers;
 
 namespace biz.dfch.CS.JustMock.Examples.Tests
 {

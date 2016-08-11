@@ -22,7 +22,6 @@ namespace biz.dfch.CS.JustMock.Examples.Tests
     [TestClass]
     public class BasicStaticMockingTests
     {
-
         /**
          * For more details consult the Wiki
          * https://github.com/dfensgmbh/biz.dfch.CS.JustMock.Examples/wiki/BasicStaticMockingTests#mocking-datetimeoffsetutcnow
