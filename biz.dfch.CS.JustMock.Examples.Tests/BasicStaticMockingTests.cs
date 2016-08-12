@@ -41,5 +41,43 @@ namespace biz.dfch.CS.JustMock.Examples.Tests
             // Assert Occurence
             Mock.Assert(() => DateTimeOffset.UtcNow);
         }
+
+        [TestMethod]
+        public void MockedConsoleShouldReturn9()
+        {
+            //Arrange
+            Mock.SetupStatic(typeof(Dummy),Behavior.Strict);
+
+            Mock.Arrange(() => Dummy.Get7())
+                .Returns(9)
+                .OccursOnce();
+
+            //Act
+            int mockedResult = Dummy.Get7();
+
+            //Assert
+            Assert.AreEqual(9,mockedResult);
+            Mock.Assert(typeof(Dummy));
+        }
+
+        [TestMethod]
+        public void MockedConsoleWillSetCalledOnTrue()
+        {
+            //Arrange
+            Mock.SetupStatic(typeof(Console),Behavior.Strict);
+
+            bool _called = false;
+
+            Mock.Arrange(() => Console.Clear())
+                .DoInstead(() =>{ _called = true;})
+                .OccursOnce();
+
+            //Act
+            Console.Clear();
+
+            //Assert
+            Assert.AreEqual(true,_called);
+            Mock.Assert(typeof (Console));
+        }
     }
 }
