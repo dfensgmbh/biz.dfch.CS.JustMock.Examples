@@ -25,5 +25,9 @@ namespace biz.dfch.CS.JustMock.Examples
 {
     public class Dummy
     {
+        public static int Get7()
+        {
+            return 7;
+        }
     }
 }
